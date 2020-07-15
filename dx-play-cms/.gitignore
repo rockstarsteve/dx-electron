@@ -7,7 +7,7 @@ yarn-error.log*
 package-lock.json
 tests/**/coverage/
 .idea/
-build/
+build/win-unpacked/
 
 # Editor directories and files
 .idea
