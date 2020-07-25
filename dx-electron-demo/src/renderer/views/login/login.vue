@@ -50,13 +50,15 @@
             </el-form-item>
 
 
-            <el-button class="login-btn">登录</el-button>
+            <el-button class="login-btn" @click="login">登录</el-button>
         </el-form>
 
     </div>
 </template>
 
 <script>
+  import {ipcRenderer} from "electron";
+
   export default {
     name: "login",
     data() {
@@ -96,6 +98,18 @@
           password: [{required: true, trigger: 'blur', validator: validatePassword}]
         },
       }
+    },
+    methods:{
+      login(){
+        this.$refs.loginForm.validate(valid => {
+          if (valid) {
+            ipcRenderer.send('openMainWindow')
+          } else {
+            console.log('error submit!!')
+            return false
+          }
+        })
+      }
     }
   }
 </script>
@@ -108,7 +122,8 @@
         padding-left: 80px;
         padding-right: 80px;
         padding-top: 100px;
-        background: #fff8f7;
+        /*background: #fff8f7;*/
+        background:rgba(250,250,250,1);
 
         .logo-img {
             position: absolute;
@@ -160,9 +175,5 @@
                 color: #FFFFFF;
             }
         }
-    }
-
-    .drag-div {
-        -webkit-app-region: drag;
     }
 </style>

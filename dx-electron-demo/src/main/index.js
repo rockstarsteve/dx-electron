@@ -20,7 +20,7 @@ if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
-let mainWindow, loginWindow
+let mainWindow, loginWindow ,isLogin = false
 const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080`
     : `file://${__dirname}/index.html`
@@ -99,6 +99,7 @@ function createLoginWindow() {
   })
 
   ipcMain.on('openMainWindow', () => {
+    isLogin = true
     if (!mainWindow) {
       createMainWindow()
     }
@@ -172,7 +173,6 @@ function createMainWindow() {
 
   })
 }
-
 
 
 /**
@@ -283,12 +283,24 @@ function createTray() {
   appTray.setContextMenu(contextMenu)
   // 主窗口显示隐藏切换
   appTray.on('click', () => {
-    // 清楚图标闪烁定时器
-    clearInterval(flashTrayTimer)
-    flashTrayTimer = null
-    // 还原图标
-    appTray.setImage(iconPath)
-    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+    //判断主页面是否加载
+    if (!isLogin){
+      if (!loginWindow){
+        createLoginWindow()
+        loginWindow.show()
+        loginWindow.focus()
+      }else {
+        loginWindow.show()
+        loginWindow.focus()
+      }
+    }else {
+      // 清楚图标闪烁定时器
+      clearInterval(flashTrayTimer)
+      flashTrayTimer = null
+      // 还原图标
+      appTray.setImage(iconPath)
+      mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+    }
   })
 }
 
@@ -297,9 +309,11 @@ function createTray() {
  * 单一实例
  */
 if (!gotTheLock) {
+  console.log("")
   app.quit()
 } else {
   app.on('second-instance', (event, commandLine, workingDirectory) => {
+    console.log("second-instance-------------------------------")
     // 当运行第二个实例时,将会聚焦到myWindow这个窗口
     // if (mainWindow) {
     //     if (mainWindow.isMinimized()) mainWindow.restore()
@@ -312,6 +326,7 @@ if (!gotTheLock) {
 
   // 创建 mainWindow, 加载应用的其余部分, etc...
   app.on('ready', () => {
+    console.log("ready-------------------------------------")
     createLoginWindow()
     createMainWindow()
     createTray()
@@ -331,6 +346,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('activate', () => {
+  console.log("activate-------------------------------------")
   if (mainWindow === null) {
     createMainWindow()
   }

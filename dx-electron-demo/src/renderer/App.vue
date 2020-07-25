@@ -16,6 +16,9 @@
     height: 100vh;
     baibackground-color:transparent;
   }
+  .drag-div {
+    -webkit-app-region: drag;
+  }
   *{
     box-sizing: border-box;
   }

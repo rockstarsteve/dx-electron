@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        main page
+        <div class="content drag-div">
+            main page
+        </div>
     </div>
 </template>
 
@@ -11,7 +13,7 @@
 </script>
 
 <style lang="less" scoped>
-    .container{
+    .container {
         width: 100%;
         height: 100%;
         background-color: pink;
