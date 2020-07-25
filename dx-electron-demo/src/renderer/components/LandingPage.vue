@@ -4,7 +4,7 @@
     <main>
       <div class="left-side">
         <span class="title">
-          Welcome to your new project!
+          Welcome to your new project!<el-button>你好</el-button>
         </span>
         <system-information></system-information>
       </div>
@@ -124,5 +124,8 @@
   .doc button.alt {
     color: #42b983;
     background-color: transparent;
+  }
+  .right-side{
+    -webkit-app-region: drag;
   }
 </style>
