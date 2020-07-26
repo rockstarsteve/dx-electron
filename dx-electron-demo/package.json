@@ -19,6 +19,7 @@
   "build": {
     "productName": "dx-electron-demo",
     "appId": "com.dx.electron",
+    "copyright": "Copyright © 2020 文理电信 ",
     "directories": {
       "output": "build"
     },
@@ -44,7 +45,13 @@
       "icon": "build/icons/icon.icns"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/icon.ico",
+      "requestedExecutionLevel": "highestAvailable",
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick":false,
+      "allowToChangeInstallationDirectory": true
     },
     "linux": {
       "icon": "build/icons"
