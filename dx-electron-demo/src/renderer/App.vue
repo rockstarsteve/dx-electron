@@ -19,6 +19,9 @@
   .drag-div {
     -webkit-app-region: drag;
   }
+  .drag-not-div {
+    -webkit-app-region: no-drag
+  }
   *{
     box-sizing: border-box;
   }

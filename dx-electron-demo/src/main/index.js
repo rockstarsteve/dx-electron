@@ -53,7 +53,7 @@ if (process.platform === 'win32') {
 
 
 /**
- * 创建主窗口
+ * 创建登录窗口
  */
 function createLoginWindow() {
   if (loginWindow) {
@@ -136,9 +136,9 @@ function createMainWindow() {
    */
   mainWindow = new BrowserWindow({
     show: false,
-    height: 1000,
-    width: 1600,
-    minWidth: 900,
+    height: 800,
+    width: 1200,
+    minWidth: 1000,
     minHeight: 600,
     useContentSize: true,
     frame: false, // 无边框
@@ -172,6 +172,13 @@ function createMainWindow() {
   mainWindow.on('maximize', () => {
 
   })
+
+  ipcMain.on('exsitSys', () => {
+    console.log("exsitSys----------------------")
+    trayClose = true
+    app.quit()
+  })
+
 }
 
 

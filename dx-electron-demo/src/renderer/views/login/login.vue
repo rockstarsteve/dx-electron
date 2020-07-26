@@ -122,7 +122,6 @@
         padding-left: 80px;
         padding-right: 80px;
         padding-top: 100px;
-        /*background: #fff8f7;*/
         background:rgba(250,250,250,1);
 
         .logo-img {
