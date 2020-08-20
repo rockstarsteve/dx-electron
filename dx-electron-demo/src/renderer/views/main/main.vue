@@ -3,6 +3,9 @@
         <div class="left">
             <img :src="LogoImg" class="logo-img drag-div" alt="">
             <img :src="bottomBgImg" class="bottom-bg" alt="">
+            <welcome-show></welcome-show>
+
+
         </div>
         <div class="right">
             <div class="headers drag-div">
@@ -23,10 +26,14 @@
 <script>
   import '../../utils/resizepx'
   import {ipcRenderer} from 'electron'
+  import WelcomeShow from "./components/WelcomeShow";'./components/WelcomeShow'
 
   const {dialog} = require('electron').remote
   export default {
     name: "main",
+    components:{
+      WelcomeShow
+    },
     data() {
       return {
         LogoImg: require('../../assets/images/login/logo.png'),
@@ -67,6 +74,7 @@
             background: rgba(250, 250, 250, 1);
             box-shadow: 8px 2px 61px 0px rgba(0, 0, 0, 0.04);
             position: relative;
+            padding: 0.5rem 0.3rem 0.5rem 0.3rem;
 
             .logo-img {
                 position: absolute;
@@ -82,6 +90,9 @@
                 bottom: -0.3rem;
                 width: 2rem;
                 height: 2rem;
+            }
+            .welcome-show{
+                margin-top: 0.5rem;
             }
 
         }
