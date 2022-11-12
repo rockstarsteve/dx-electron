@@ -6,6 +6,7 @@
   "description": "测试的项目",
   "license": "MIT",
   "scripts": {
+    "dev": "electron .",
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"
